@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competition Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="password"], input[type="number"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .flash-message {
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 3px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Competition Registration</h2>
+        <form action="#" method="post" id="registration-form">
+            <!-- CSRF Token -->
+            <input type="hidden" name="csrf_token" value="YOUR_CSRF_TOKEN_HERE">
+
+            <div class="form-group">
+                <label for="fullname">Full Name:</label>
+                <input type="text" id="fullname" name="fullname" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+            <div class="form-group">
+                <label for="college">College Name:</label>
+                <input type="text" id="college" name="college" required>
+            </div>
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <div class="form-group">
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" required>
+            </div>
+            <div class="form-group">
+                <label for="year">Year of Study:</label>
+                <input type="text" id="year" name="year" required>
+            </div>
+            <div class="form-group">
+                <label for="problem">Problem Statement:</label>
+                <textarea id="problem" name="problem" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="theme">Theme:</label>
+                <input type="text" id="theme" name="theme" required>
+            </div>
+            <button type="submit">Register</button>
+            <p><br></p>
+        </form>
+        <div class="flash-message" id="registration-success">
+            Registration complete! Thank you for registering.
+        </div>
+        <a href="{% url 'thinkify:homeNext' %}"><button type="submit">Back</button></a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const registrationForm = document.getElementById("registration-form");
+            const flashMessage = document.getElementById("registration-success");
+            const backButton = document.getElementById("back-button");
+
+            registrationForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+                // Verify CSRF token here (you should check the token on the server-side).
+                const csrfToken = registrationForm.querySelector('input[name="csrf_token"]').value;
+
+                // Simulate registration completion (you can replace this with your actual registration logic).
+                setTimeout(function() {
+                    // Display the flash message and reset the form.
+                    flashMessage.style.display = "block";
+                    registrationForm.reset();
+
+                    // Hide the flash message after 3 seconds.
+                    setTimeout(function() {
+                        flashMessage.style.display = "none";
+                    }, 3000);
+                }, 1000);
+            });
+
+            backButton.addEventListener("click", function(event) {
+                event.preventDefault();
+                // Add your back button functionality here, such as navigating to a previous page.
+                alert("Back button clicked. Implement your navigation logic here.");
+            });
+        });
+    </script>
+</body>
+</html>
